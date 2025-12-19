@@ -8,12 +8,12 @@ bot.onText(/\/start/, (msg) => {
   );
 });
 const { createClient } = require("@supabase/supabase-js");
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+const bo = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
 );
-bot.onText(/\/start/, async (msg) => {
+bo.onText(/\/start/, async (msg) => {
   await supabase.from("users").insert({
     telegram_id: msg.from.id,
     username: msg.from.username
@@ -22,6 +22,7 @@ bot.onText(/\/start/, async (msg) => {
   bot.sendMessage(msg.chat.id, "Bot ishlayapti ✅");
 });
 console.log("🤖 Telegram bot ishga tushdi");
+
 
 
 
