@@ -9,7 +9,7 @@ bot.onText(/\/start/, (msg) => {
 });
 const { createClient } = require("@supabase/supabase-js");
 
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+// const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -26,4 +26,5 @@ bot.onText(/\/start/, async (msg) => {
 });
 
 console.log("🤖 Telegram bot ishga tushdi");
+
 
