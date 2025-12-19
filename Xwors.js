@@ -1,28 +1,22 @@
 const TelegramBot = require("node-telegram-bot-api");
-const token = process.env.BOT_TOKEN;
-const bot = new TelegramBot(token, { polling: true });
-bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(
-    msg.chat.id,
-    "Befarosat bot sanga qattan maqsad beradi!😒😡🤬"
-  );
-});
 const { createClient } = require("@supabase/supabase-js");
-const bo = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+
+// Telegram bot (FAQAT 1 MARTA)
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+
+// Supabase
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY
 );
-bo.onText(/\/start/, async (msg) => {
+
+bot.onText(/\/start/, async (msg) => {
   await supabase.from("users").insert({
     telegram_id: msg.from.id,
-    username: msg.from.username
+    username: msg.from.username || null
   });
 
   bot.sendMessage(msg.chat.id, "Bot ishlayapti ✅");
 });
-console.log("🤖 Telegram bot ishga tushdi");
 
-
-
-
+console.log("🤖 Bot ishga tushdi");
