@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "main": "Xwors.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node Xwors.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "node-telegram-bot-api": "^0.67.0"
-  "@supabase/supabase-js": "^2.39.7"
-      }
-    }
+    "node-telegram-bot-api": "^0.66.0",
+    "@supabase/supabase-js": "^2.39.7"
+  }
+}
