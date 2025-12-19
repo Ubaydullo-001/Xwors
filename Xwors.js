@@ -18,5 +18,18 @@ bot.onText(/\/start/, async (msg) => {
 
   bot.sendMessage(msg.chat.id, "Bot ishlayapti ✅");
 });
+bot.on("message", async (msg) => {
+  const chatId = msg.chat.id.toString();
+
+  await supabase
+    .from("users")
+    .insert([{ chat_id: chatId }]);
+});
+const { data, error } = await supabase
+  .from("users")
+  .select("*");
+
+console.log(data);
 
 console.log("🤖 Bot ishga tushdi");
+
