@@ -7,7 +7,6 @@ bot.onText(/\/start/, (msg) => {
     "Befarosat bot sanga qattan maqsad beradi!😒😡🤬"
   );
 });
-const TelegramBot = require("node-telegram-bot-api");
 const { createClient } = require("@supabase/supabase-js");
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
@@ -27,3 +26,4 @@ bot.onText(/\/start/, async (msg) => {
 });
 
 console.log("🤖 Telegram bot ishga tushdi");
+
