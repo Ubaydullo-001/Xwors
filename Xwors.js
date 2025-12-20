@@ -10,8 +10,8 @@ bot.onText(/\/start/, async (msg) => {
     username: msg.from.username || null });
   bot.sendMessage(msg.chat.id, "Bot ishlayapti ✅");});
 const TelegramBot = require("node-telegram-bot-api");
-// const token = process.env.BOT_TOKEN;
-const bot = new TelegramBot(token, { polling: true });
+const token = process.env.BOT_TOKEN;
+// const bot = new TelegramBot(token, { polling: true });
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
@@ -46,6 +46,7 @@ console.log("🤖 Bot ishga tushdi");
 // console.log(data);
 
 console.log("🤖 Bot ishga tushdi");
+
 
 
 
