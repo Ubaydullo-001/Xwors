@@ -42,5 +42,6 @@ bot.on("message", async (msg) => {
   }
   bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
 });
-  bot.deleteWebhook();
+  // bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
+
