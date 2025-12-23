@@ -14,7 +14,7 @@ bot.on("message", (msg) => {
   const text = msg.text;
   if (!text || text.startsWith("/")) return;
   const link = `https://t.me/olimov_me`;
-  bot.sendMessage(chatId, `🔍 "${text}" uchun havola:`, {
+  bot.sendMessage(chatId, `🔍 "${Oyat}"`, {
     reply_markup: {
       inline_keyboard: [
         [
@@ -44,6 +44,7 @@ bot.on("message", async (msg) => {
   bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
 });
 console.log("🤖 Bot ishga tushdi");
+
 
 
 
