@@ -8,7 +8,6 @@ bot.onText(/\/start/, async (msg) => {
   await supabase.from("users").insert({
     telegram_id: msg.from.id,
     username: msg.from.username || null });
-  bot.sendMessage(msg.chat.id, "Bot ishlayapti ✅");});
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
@@ -43,7 +42,9 @@ bot.on("message", async (msg) => {
   }
   bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
 });
+  bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
+
 
 
 
