@@ -15,20 +15,21 @@ bot.onText(/\/start/, async (msg) => {
     username: msg.from.username || null
   });
 
-  bot.sendMessage(msg.chat.id, "Salom! Bot ishlayapti ✅");
+  bot.sendMessage(msg.chat.id, "Salom! Bot ishga tushdi ✅");
 });
 
-// Foydalanuvchi har qanday xabar yuborsa
+// Foydalanuvchi xabar yuborsa
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
 
+  // Agar xabar bo'sh yoki komand bo'lsa, hech narsa qilmaymiz
   if (!text || text.startsWith("/")) return;
 
-  const link = `https://t.me/olimov_me`; // Bu yerga sizning linkingiz
+  const link = "https://t.me/olimov_me"; // Inline tugma linki
 
   // Inline tugma bilan javob yuborish
-  bot.sendMessage(chatId, `🔍 Ma'lumot: ${text}`, {
+  bot.sendMessage(chatId, `🔍 Siz yozdingiz: "${text}"`, {
     reply_markup: {
       inline_keyboard: [
         [
@@ -52,7 +53,6 @@ bot.on("message", async (msg) => {
   if (error) console.log("DB error:", error);
 });
 
-// Webhookni o‘chirish
 bot.deleteWebhook();
 
 console.log("🤖 Bot ishga tushdi");
