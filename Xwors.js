@@ -1,6 +1,10 @@
 const TelegramBot = require("node-telegram-bot-api");
 const { createClient } = require("@supabase/supabase-js");
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+if (!token) {
+  console.error("❌ BOT_TOKEN topilmadi");
+  process.exit(1);
+}
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_KEY);
@@ -44,6 +48,7 @@ bot.on("message", async (msg) => {
 });
   bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
+
 
 
 
