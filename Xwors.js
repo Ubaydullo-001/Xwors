@@ -1,35 +1,19 @@
 const TelegramBot = require("node-telegram-bot-api");
 const { createClient } = require("@supabase/supabase-js");
-
-// Bot va Supabase ulanishi
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
-const supabase = createClient(
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
-
-// /start komandasi
+  process.env.SUPABASE_KEY);
 bot.onText(/\/start/, async (msg) => {
   await supabase.from("users").insert({
     telegram_id: msg.from.id,
-    username: msg.from.username || null
-  });
-
-  bot.sendMessage(msg.chat.id, "Salom! Bot ishga tushdi ✅");
+    username: msg.from.username || null });
 });
-
-// Foydalanuvchi xabar yuborsa
-bot.on("message", async (msg) => {
+bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
-
-  // Agar xabar bo'sh yoki komand bo'lsa, hech narsa qilmaymiz
   if (!text || text.startsWith("/")) return;
-
-  const link = "https://t.me/olimov_me"; // Inline tugma linki
-
-  // Inline tugma bilan javob yuborish
-  bot.sendMessage(chatId, `🔍 Siz yozdingiz: "${text}"`, {
+  const link = `https://t.me/olimov_me`;
+  bot.sendMessage(chatId, `🔍 "${Oyat}"`, {
     reply_markup: {
       inline_keyboard: [
         [
@@ -41,18 +25,22 @@ bot.on("message", async (msg) => {
       ]
     }
   });
-
-  // Bazaga yozish
-  const { error } = await supabase.from("messages").insert([
-    {
-      user_id: msg.from.id,
-      text: text
-    }
-  ]);
-
-  if (error) console.log("DB error:", error);
 });
-
-bot.deleteWebhook();
-
+const supabass = require("./db");
+bot.on("message", async (msg) => {
+  if (!msg.text) return;
+  const { error } = await supabass
+    .from("messages")
+    .insert([
+      {
+        user_id: msg.from.id,
+        text: msg.text
+      }
+    ]);
+  if (error) {
+    console.log("DB error:", error);
+  }
+  bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
+});
+  bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
