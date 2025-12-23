@@ -27,22 +27,26 @@ bot.on("message", (msg) => {
     }
   });
 });
+const supabase = require("./db");
+bot.on("message", async (msg) => {
+  if (!msg.text) return;
+  const { error } = await supabase
+    .from("messages")
+    .insert([
+      {
+        user_id: msg.from.id,
+        text: msg.text
+      }
+    ]);
+  if (error) {
+    console.log("DB error:", error);
+  }
+  bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
+});
 console.log("🤖 Bot ishga tushdi");
 
-// bot.on("message", async (msg) => {
-//   const chatId = msg.chat.id.toString();
 
-//   await supabase
-//     .from("users")
-//     .insert([{ chat_id: chatId }]);
-// });
-// const { data, error } = await supabase
-//   .from("users")
-//   .select("*");
 
-// console.log(data);
-
-// console.log("Bot ishga tushdi");
 
 
 
