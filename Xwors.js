@@ -27,10 +27,10 @@ bot.on("message", (msg) => {
     }
   });
 });
-const supabase = require("./db");
+const supabass = require("./db");
 bot.on("message", async (msg) => {
   if (!msg.text) return;
-  const { error } = await supabase
+  const { error } = await supabass
     .from("messages")
     .insert([
       {
@@ -44,6 +44,7 @@ bot.on("message", async (msg) => {
   bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
 });
 console.log("🤖 Bot ishga tushdi");
+
 
 
 
