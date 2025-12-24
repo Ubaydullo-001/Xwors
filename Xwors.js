@@ -40,8 +40,29 @@ bot.on("message", async (msg) => {
   if (error) {
     console.log("DB error:", error);
   }
-  bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
+  // bot.sendMessage(msg.chat.id, "✅ Ma’lumot bazaga yozildi");
+  // Har qanday xabarni ushlaydi
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
+
+  // buyruqlarni o'tkazib yuboramiz
+  if (!msg.text || msg.text.startsWith("/")) return;
+
+  bot.sendMessage(chatId, "👇 Oyatni ochish uchun tugmani bosing", {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: "📖 Oyatni ochish",
+            url: "https://t.me/olimov_me"
+          }
+        ]
+      ]
+    }
+  });
+});
 });
   // bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
+
 
