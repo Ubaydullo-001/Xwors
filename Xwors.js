@@ -1,3 +1,4 @@
+require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 const { createClient } = require("@supabase/supabase-js");
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });const supabase = createClient(
@@ -64,5 +65,6 @@ bot.on("message", (msg) => {
 });
   // bot.deleteWebhook();
 console.log("🤖 Bot ishga tushdi");
+
 
 
